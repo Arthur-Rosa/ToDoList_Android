@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/cadTarefaFragment">
+
+    <fragment
+        android:id="@+id/cadSubtarefaFragment"
+        android:name="br.senai.sp.cotia.todolistapp.fragment.CadSubtarefaFragment"
+        android:label="fragment_cad_subtarefa"
+        tools:layout="@layout/fragment_cad_subtarefa" />
+    <fragment
+        android:id="@+id/detalheTarefaFragment"
+        android:name="br.senai.sp.cotia.todolistapp.fragment.DetalheTarefaFragment"
+        android:label="fragment_detalhe_tarefa"
+        tools:layout="@layout/fragment_detalhe_tarefa" >
+        <action
+            android:id="@+id/action_detalheTarefaFragment_to_cadSubtarefaFragment"
+            app:destination="@id/cadSubtarefaFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/principalFragment"
+        android:name="br.senai.sp.cotia.todolistapp.fragment.PrincipalFragment"
+        android:label="fragment_principal"
+        tools:layout="@layout/fragment_principal" >
+        <action
+            android:id="@+id/action_principalFragment_to_detalheTarefaFragment"
+            app:destination="@id/detalheTarefaFragment" />
+        <action
+            android:id="@+id/action_principalFragment_to_cadTarefaFragment"
+            app:destination="@id/cadTarefaFragment" />
+    </fragment>
+    <activity
+        android:id="@+id/splashActivity"
+        android:name="br.senai.sp.cotia.todolistapp.activity.SplashActivity"
+        android:label="activity_splash"
+        tools:layout="@layout/activity_splash" />
+    <fragment
+        android:id="@+id/cadTarefaFragment"
+        android:name="br.senai.sp.cotia.todolistapp.fragment.CadTarefaFragment"
+        android:label="fragment_cad_tarefa"
+        tools:layout="@layout/fragment_cad_tarefa" />
+</navigation>
