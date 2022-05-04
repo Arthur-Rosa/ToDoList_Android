@@ -2,4 +2,7 @@
     <string name="app_name">ToDoListApp</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="finalizada">Finalizada</string>
+    <string name="aberta">Aberta</string>
+    <string name="atrasado">Atrasado</string>
 </resources>
