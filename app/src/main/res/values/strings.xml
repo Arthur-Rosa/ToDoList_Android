@@ -5,4 +5,7 @@
     <string name="finalizada">Finalizada</string>
     <string name="aberta">Aberta</string>
     <string name="atrasado">Atrasado</string>
+    <string name="origem_imagem">Qual a origem da imagem ?</string>
+    <string name="camera">Câmera</string>
+    <string name="galeria">Galeria</string>
 </resources>

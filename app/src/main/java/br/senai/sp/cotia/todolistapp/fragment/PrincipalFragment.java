@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,6 +40,15 @@ public class PrincipalFragment extends Fragment {
             NavHostFragment.findNavController(PrincipalFragment.this).navigate(R.id.action_principalFragment_to_cadTarefaFragment);
         });
 
+        // insanciar a database
+        database = AppDatabase.getDatabase(getContext());
+
+        // define o manager do recycler
+        binding.recyclerTarefa.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        // executa a asynctask
+        new ReadTarefa().execute();
+
         // retorna a view raiz (root) do binding
         return binding.getRoot();
     }
@@ -47,13 +57,27 @@ public class PrincipalFragment extends Fragment {
 
         @Override
         protected List<Tarefa> doInBackground(Void... voids) {
-            return null;
+            // buscar as tarefas e guardar na variavel tarefas
+            tarefas = database.getTarefaDao().getAll();
+            return tarefas;
         }
 
         @Override
         protected void onPostExecute(List<Tarefa> tarefas) {
-            super.onPostExecute(tarefas);
-
+            // instancia o adapter
+            adapter = new TarefaAdapter(tarefas, getContext(), listenerClick);
+            // aplica o adapter no recycler
+            binding.recyclerTarefa.setAdapter(adapter);
         }
     }
+
+    // listener para click nas tarefas
+    private TarefaAdapter.OnTarefaClickLitener listenerClick = (view, tarefa) -> {
+      // variavel para "pendurar" a tarefa
+        Bundle bundle = new Bundle();
+        // pendura a tarefa no bundle
+        bundle.putSerializable("tarefa", tarefa);
+        // navega para o fragment de detalhes
+        NavHostFragment.findNavController(PrincipalFragment.this).navigate(R.id.action_principalFragment_to_detalheTarefaFragment, bundle);
+    };
 }
